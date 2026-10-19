@@ -6,7 +6,7 @@ The project combines a user interface with review-analysis and prediction compon
 
 ## Project Features
 
-- Laptop review analysis through a web interface.
+- Laptop,Mobiles and Tabs review analysis through a web interface.
 - Device information and supporting dataset.
 - Model-related and prediction interface pages.
 - Web application built with HTML, CSS, JavaScript, and Python.
