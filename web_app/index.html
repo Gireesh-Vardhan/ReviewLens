@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReviewLens — Official Launch Page | AI Device Advisor</title>
+  <meta name="description" content="Official Launchpad for ReviewLens: 1-click device recommendations across 150 curated Laptops, Smartphones, and Tablets grounded in customer reviews.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Launch Sequence Modal Overlay */
+    .launch-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 15, 29, 0.92);
+      backdrop-filter: blur(16px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .launch-overlay.active {
+      display: flex;
+    }
+    .launch-box {
+      max-width: 520px;
+      width: 100%;
+      background: linear-gradient(135deg, rgba(20, 28, 48, 0.95), rgba(15, 23, 42, 0.95));
+      border: 2px solid var(--primary);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 0 60px rgba(99, 102, 241, 0.5);
+      animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .countdown-number {
+      font-size: 5rem;
+      font-weight: 800;
+      color: #67e8f9;
+      font-family: var(--font-mono);
+      line-height: 1;
+      margin: 16px 0;
+      text-shadow: 0 0 30px rgba(6, 182, 212, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Launchpad Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <circle cx="11" cy="11" r="3" fill="#6366f1"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ReviewLens</span>
+          <span class="brand-tagline">🚀 Official Launchpad</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item active">🚀 Launch Page</a>
+        <a href="predict.html" class="nav-item">🏆 Predict Best Device</a>
+        <a href="devices.html" class="nav-item">📱 Browse 150 Devices</a>
+        <a href="analyzer.html" class="nav-item">🔍 Review Scanner</a>
+        <a href="models.html" class="nav-item" style="color:#a5b4fc;">🧠 AI Models & Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="btn-audio-assist" class="btn-audio" onclick="playWelcomeAudio()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span id="audio-btn-label">🔊 Voice Guide</span>
+        </button>
+        <a href="https://github.com/Gireesh-Vardhan/ReviewLens" target="_blank" class="btn-pill">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- IMMERSIVE LAUNCH COCKPIT -->
+  <main>
+    <section class="launch-hero">
+      <div class="launch-cockpit">
+        
+        <div class="launch-banner-tag">
+          <span class="pulse-dot"></span>
+          <span>System Online • 150 Grounded Devices • DeBERTa-v3 SOTA Ready</span>
+        </div>
+
+        <h1 class="launch-title">
+          Don't Guess What to Buy.<br>
+          <span class="gradient-text">Let AI Launch Your Next Device.</span>
+        </h1>
+
+        <p class="launch-subtitle">
+          Buying personal tech shouldn't require a computer science degree. ReviewLens scans thousands of real customer reviews across <strong>150 laptops, phones, and tablets</strong> to predict your #1 best purchase in plain English with audio guidance and full Explainable AI (XAI) transparency!
+        </p>
+
+        <!-- Giant Unmistakable Launch Action -->
+        <div class="launch-main-action">
+          <button class="btn-launch-giant" onclick="triggerLaunchSequence('predict.html')">
+            <span class="rocket-anim">🚀</span>
+            <span>LAUNCH SMART DEVICE PREDICTOR</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+
+          <div class="launch-sub-links">
+            <a href="devices.html" class="btn-launch-outline">
+              <span>📱 Browse All 150 Devices (₹9.9k - ₹1.7L)</span>
+            </a>
+            <a href="analyzer.html" class="btn-launch-outline">
+              <span>🔍 Scan a Custom Review</span>
+            </a>
+            <a href="models.html" class="btn-launch-outline" style="border-color:rgba(99,102,241,0.5); color:#a5b4fc;">
+              <span>🧠 View 3 AI Models & Team</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- System Readiness Telemetry Strip -->
+        <div class="launch-telemetry-strip">
+          <div class="telemetry-item">
+            <div class="telemetry-icon">💻</div>
+            <div class="telemetry-info">
+              <span class="telemetry-label">Laptops Bay</span>
+              <span class="telemetry-value">50 Models Grounded</span>
+            </div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-icon">📱</div>
+            <div class="telemetry-info">
+              <span class="telemetry-label">Phones Bay</span>
+              <span class="telemetry-value">50 Mobiles Grounded</span>
+            </div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-icon">📟</div>
+            <div class="telemetry-info">
+              <span class="telemetry-label">Tablets Bay</span>
+              <span class="telemetry-value">50 iPads &amp; Tabs</span>
+            </div>
+          </div>
+          <div class="telemetry-item">
+            <div class="telemetry-icon">⚡</div>
+            <div class="telemetry-info">
+              <span class="telemetry-label">NLP Model</span>
+              <span class="telemetry-value" style="color:#67e8f9;">86.8% Macro F1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Big Launch Doors (Category Gateways) -->
+        <div style="text-align:left; margin-bottom:18px;">
+          <h2 style="font-size:1.4rem; font-weight:800; color:#ffffff;">Select a Launch Bay:</h2>
+          <p style="font-size:0.9rem; color:var(--text-muted);">Choose your device category to launch directly into personalized advice:</p>
+        </div>
+
+        <div class="launch-doors-grid">
+          <!-- Door 1: Laptops -->
+          <a href="predict.html?cat=laptop" class="door-card">
+            <div class="door-icon">💻</div>
+            <h3 class="door-title">Laptops Launchpad</h3>
+            <div class="door-stats">50 Models • ₹28,990 to ₹1,69,990</div>
+            <p class="door-desc">
+              MacBook Pro/Air, ASUS TUF &amp; ROG Strix, Lenovo Legion &amp; LOQ, ThinkPad X1 Carbon, Dell XPS 13 &amp; Inspiron, HP Omen, and Acer Predator.
+            </p>
+            <div class="door-cta">
+              <span>Launch Laptop Advisor</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </a>
+
+          <!-- Door 2: Mobile Phones -->
+          <a href="predict.html?cat=mobile" class="door-card">
+            <div class="door-icon">📱</div>
+            <h3 class="door-title">Smartphones Launchpad</h3>
+            <div class="door-stats">50 Models • ₹9,999 to ₹1,44,900</div>
+            <p class="door-desc">
+              Samsung Galaxy S24 Ultra &amp; S24 FE, iPhone 16 Pro Max &amp; iPhone 15, OnePlus 13 &amp; 12R, Xiaomi 14, Vivo V40, iQOO 12, Poco F6, and Moto Edge 50 Pro.
+            </p>
+            <div class="door-cta">
+              <span>Launch Phone Advisor</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </a>
+
+          <!-- Door 3: Tablets / iPads -->
+          <a href="predict.html?cat=tablet" class="door-card">
+            <div class="door-icon">📟</div>
+            <h3 class="door-title">Tablets &amp; iPads Launchpad</h3>
+            <div class="door-stats">50 Models • ₹10,999 to ₹1,29,900</div>
+            <p class="door-desc">
+              iPad Pro 13 M4, iPad Air 13 M2, Galaxy Tab S9 Ultra &amp; S10+, OnePlus Pad 2, Xiaomi Pad 7, Surface Pro 9, and Lenovo Tab P12.
+            </p>
+            <div class="door-cta">
+              <span>Launch Tablet Advisor</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </div>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="container" style="padding: 40px 24px 60px;">
+      <div class="section-header">
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 8px;">Built for Everyone, Especially Non-Tech Users</h2>
+        <p style="color: var(--text-muted); font-size: 1.05rem;">
+          How ReviewLens transforms confusing tech specs into an effortless buying decision.
+        </p>
+      </div>
+
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <div class="hl-badge">Step 1</div>
+          <h3 class="hl-title">1-Click Category &amp; Budget</h3>
+          <p class="hl-desc">
+            No endless filters. Just tap whether you need a Phone, Laptop, or Tablet and set your budget with 1 click.
+          </p>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hl-badge">Step 2</div>
+          <h3 class="hl-title">Pick What Matters to You</h3>
+          <p class="hl-desc">
+            Select 🔋 Battery, 📸 Camera/Display, ⚡ Speed/Gaming, 💰 Value for Money, or 🛡️ Durability. ReviewLens does all the math.
+          </p>
+        </div>
+
+        <div class="highlight-card">
+          <div class="hl-badge">Step 3</div>
+          <h3 class="hl-title">Listen to Plain-English Advice</h3>
+          <p class="hl-desc">
+            Click <strong>"🔊 Listen to Verdict"</strong> and ReviewLens speaks the top recommended device and pros/cons out loud!
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LAUNCH COUNTDOWN MODAL -->
+  <div id="launch-modal" class="launch-overlay">
+    <div class="launch-box">
+      <div style="font-size:2.5rem; margin-bottom:8px;">🚀</div>
+      <h2 style="font-size:1.6rem; font-weight:800; color:#ffffff; margin-bottom:8px;">Initiating Launch Sequence...</h2>
+      <p style="font-size:0.95rem; color:var(--text-muted);">Calibrating 150 devices with DeBERTa-v3 ABSA engine</p>
+      <div id="countdown-val" class="countdown-number">3</div>
+      <button onclick="skipLaunch()" class="btn-pill" style="margin-top:12px; background:rgba(255,255,255,0.1); border:none; cursor:pointer;">
+        Skip Countdown &raquo;
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>ReviewLens</strong> &bull; NLP Review 2 Project &bull; Roll No: <code>CB.SC.U4CSE24220</code>
+      </div>
+      <nav class="footer-nav">
+        <a href="index.html">Launch Page</a>
+        <a href="predict.html">Predictor</a>
+        <a href="devices.html">150 Devices</a>
+        <a href="analyzer.html">Scanner</a>
+        <a href="models.html">Models &amp; Team</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    let targetLaunchUrl = 'predict.html';
+
+    function triggerLaunchSequence(url = 'predict.html') {
+      targetLaunchUrl = url;
+      const modal = document.getElementById('launch-modal');
+      const counterEl = document.getElementById('countdown-val');
+      modal.classList.add('active');
+
+      // Play short voice cue if supported
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const introUtterance = new SpeechSynthesisUtterance("Launching ReviewLens Device Predictor.");
+        introUtterance.rate = 1.05;
+        window.speechSynthesis.speak(introUtterance);
+      }
+
+      let count = 3;
+      counterEl.innerText = count;
+      const interval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          counterEl.innerText = count;
+        } else {
+          counterEl.innerText = "GO!";
+          clearInterval(interval);
+          setTimeout(() => {
+            window.location.href = targetLaunchUrl;
+          }, 350);
+        }
+      }, 700);
+    }
+
+    function skipLaunch() {
+      window.location.href = targetLaunchUrl;
+    }
+
+    function playWelcomeAudio() {
+      if (!('speechSynthesis' in window)) {
+        alert("Audio speech synthesis is not supported on your browser.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const text = "Welcome to the official ReviewLens Launchpad. Powered by 150 verified tech devices across laptops, smartphones, and tablets. Click the big Launch button to predict the single best device for your budget.";
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.95;
+      utter.pitch = 1.0;
+      const btn = document.getElementById('btn-audio-assist');
+      btn.classList.add('active');
+      utter.onend = () => btn.classList.remove('active');
+      utter.onerror = () => btn.classList.remove('active');
+      window.speechSynthesis.speak(utter);
+    }
+  </script>
+</body>
+</html>

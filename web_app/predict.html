@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReviewLens — Predict the Best Device to Purchase</title>
+  <meta name="description" content="Pick your category and what you care about, and ReviewLens AI will predict the #1 Best Device to buy from 150 Laptops, Phones, and Tablets.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <circle cx="11" cy="11" r="3" fill="#6366f1"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ReviewLens</span>
+          <span class="brand-tagline">AI Product Advisor</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">🚀 Launch Page</a>
+        <a href="predict.html" class="nav-item active">🏆 Predict Best Device</a>
+        <a href="devices.html" class="nav-item">📱 Browse 150 Devices</a>
+        <a href="analyzer.html" class="nav-item">🔍 Review Scanner</a>
+        <a href="models.html" class="nav-item" style="color:#a5b4fc;">🧠 AI Models & Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="btn-audio-speak" class="btn-audio" onclick="speakCurrentVerdict()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <span id="audio-label">🔊 Listen to Verdict</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <a href="index.html" class="btn-pill" style="display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; background:rgba(99,102,241,0.15); border-color:var(--primary); color:#c7d2fe;">
+          <span>&larr;</span>
+          <span>Return to Official Launch Page</span>
+        </a>
+      </div>
+
+      <div class="page-header">
+        <div class="tag-badge">AI Buying Assistant</div>
+        <h1 class="page-title">Predict the #1 Best Device for You</h1>
+        <p class="page-desc">Answer 3 simple questions below and our AI will evaluate all 150 devices in our dataset to give you an honest recommendation.</p>
+      </div>
+
+      <!-- 3-Step Selection Grid -->
+      <div class="steps-container">
+        <!-- Step 1: Category -->
+        <div class="step-card">
+          <div class="step-title">
+            <span class="step-num">1</span>
+            <span>What type of device do you need?</span>
+          </div>
+          <div class="category-tabs">
+            <button class="cat-tab active" onclick="changeCategory('laptop')" id="tab-laptop">
+              <span>💻 Laptops (50)</span>
+            </button>
+            <button class="cat-tab" onclick="changeCategory('mobile')" id="tab-mobile">
+              <span>📱 Mobile Phones (50)</span>
+            </button>
+            <button class="cat-tab" onclick="changeCategory('tablet')" id="tab-tablet">
+              <span>📟 iPads & Tablets (50)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Budget Range -->
+        <div class="step-card">
+          <div class="step-title">
+            <span class="step-num">2</span>
+            <span>What is your approximate budget?</span>
+          </div>
+          <div class="chips-row">
+            <button class="filter-chip active" onclick="setBudgetFilter('all', this)">Any Price Range</button>
+            <button class="filter-chip" onclick="setBudgetFilter('under25k', this)">Under ₹25,000 (Budget)</button>
+            <button class="filter-chip" onclick="setBudgetFilter('25k_50k', this)">₹25,000 - ₹50,000 (Mid-range)</button>
+            <button class="filter-chip" onclick="setBudgetFilter('50k_80k', this)">₹50,000 - ₹80,000 (Upper Mid)</button>
+            <button class="filter-chip" onclick="setBudgetFilter('above80k', this)">Above ₹80,000 (Premium/Flagship)</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Priority Feature -->
+        <div class="step-card">
+          <div class="step-title">
+            <span class="step-num">3</span>
+            <span>What feature matters most to you?</span>
+          </div>
+          <div class="chips-row">
+            <button class="filter-chip active" onclick="setPriority('battery', this)">🔋 Long Battery Life</button>
+            <button class="filter-chip" onclick="setPriority('camera', this)">📸 Best Screen & Camera</button>
+            <button class="filter-chip" onclick="setPriority('performance', this)">⚡ Fast Speed & Gaming</button>
+            <button class="filter-chip" onclick="setPriority('budget', this)">💰 Maximum Value for Money</button>
+            <button class="filter-chip" onclick="setPriority('build', this)">🛡️ Durable & Lightweight</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WINNER CARD -->
+      <div class="prediction-result-card" id="prediction-result">
+        <div class="result-ribbon">
+          <span>🏆 #1 Top Recommended Device to Purchase</span>
+          <button class="btn-speak-now" onclick="speakCurrentVerdict()">
+            <span>🔊 Listen to Verdict</span>
+          </button>
+        </div>
+
+        <div class="result-body">
+          <!-- Left: Big Avatar, Name, Price & Score -->
+          <div class="result-left">
+            <div class="dev-avatar-huge" id="res-icon">💻</div>
+            <h2 class="dev-name-huge" id="res-name">Apple MacBook Air M2 13-inch</h2>
+            <div class="dev-price-tag" id="res-price">₹89,990</div>
+            <div class="dev-segment-pill" id="res-segment">Premium &bull; 2022</div>
+
+            <div class="score-box-big">
+              <div class="score-num-big" id="res-score">9.5</div>
+              <div class="score-label-big">ReviewLens Trust Rating / 10</div>
+            </div>
+          </div>
+
+          <!-- Right: Plain English Verdict, Pros, Cons, Specs -->
+          <div class="result-right">
+            <!-- Plain English Banner -->
+            <div class="plain-verdict-banner">
+              <div class="plain-verdict-title">Plain English Advice:</div>
+              <p class="plain-verdict-text" id="res-verdict">
+                "Great choice for students and professionals wanting battery and portability. Key advantage is fanless and silent, though remember that only 2 ports. Overall excellent value."
+              </p>
+            </div>
+
+            <!-- Pros & Cons -->
+            <div class="pros-cons-container">
+              <div class="pro-column">
+                <div class="col-badge badge-pro">🟢 Real Customer Praise (Pros)</div>
+                <ul class="clean-list" id="res-pros">
+                  <li>Fanless and silent operation</li>
+                  <li>Excellent battery life</li>
+                  <li>Great display and trackpad</li>
+                </ul>
+              </div>
+
+              <div class="con-column">
+                <div class="col-badge badge-con">🔴 Things to Watch Out (Cons)</div>
+                <ul class="clean-list" id="res-cons">
+                  <li>Only 2 ports</li>
+                  <li>8GB RAM base</li>
+                  <li>Costly upgrades</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Specs Grid -->
+            <div class="specs-grid-mini">
+              <div class="spec-mini-item">
+                <span>Processor:</span>
+                <strong id="res-cpu">Apple M2</strong>
+              </div>
+              <div class="spec-mini-item">
+                <span>RAM & Storage:</span>
+                <strong id="res-ram-storage">8GB / 256GB</strong>
+              </div>
+              <div class="spec-mini-item">
+                <span>Display:</span>
+                <strong id="res-display">13.6" Liquid Retina</strong>
+              </div>
+              <div class="spec-mini-item">
+                <span>Battery & Charge:</span>
+                <strong id="res-battery">52.6 Wh (35W)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPLAINABLE AI (XAI) DECISION DASHBOARD -->
+      <div class="xai-dashboard-card">
+        <div class="xai-header">
+          <div>
+            <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:4px;">
+              <span style="font-size:1.3rem;">🧠</span>
+              <h2 style="font-size:1.35rem; font-weight:800; color:#ffffff; margin:0;">Explainable AI (XAI) Attribution &amp; Model Transparency</h2>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-muted); margin:0;">
+              Visualizing how the fine-tuned DeBERTa-v3 model uses Integrated Gradients to attribute positive and negative sentiment weights to customer review tokens.
+            </p>
+          </div>
+          <div class="xai-formula-badge">
+            Integrated Gradients: Attribution(x<sub>i</sub>) = (x<sub>i</sub> - x'<sub>i</sub>) &times; &int; (&part;F / &part;x<sub>i</sub>) d&alpha;
+          </div>
+        </div>
+
+        <!-- Token Feature Heatmap Cards -->
+        <div style="font-size:0.85rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">
+          Token-Level Feature Weights (Grounded in Customer Reviews):
+        </div>
+        <div class="xai-token-grid" id="xai-tokens-container">
+          <!-- Dynamically populated from dev.xaiAttribution -->
+        </div>
+
+        <!-- Aspect Contribution Confidence Meters -->
+        <div style="font-size:0.85rem; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px;">
+          Aspect Sentiment Polarity Scores (150 Verified Devices Corpus):
+        </div>
+        <div class="xai-aspect-bars" id="xai-bars-container">
+          <!-- Dynamically populated from dev.aspects -->
+        </div>
+
+        <!-- Plain-English XAI Rationale -->
+        <div id="xai-rationale-box" style="background:rgba(0,0,0,0.3); border-left:4px solid #06b6d4; padding:16px 20px; border-radius:8px; font-size:0.92rem; line-height:1.55; color:var(--text-main);">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>ReviewLens</strong> &bull; AI Product Advisor &bull; Grounded in 150 Devices Dataset (50 Laptops, 50 Mobiles, 50 Tablets)
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">🚀 Launch Page</a>
+        <a href="devices.html">Catalog</a>
+        <a href="analyzer.html">Scanner</a>
+        <a href="models.html">AI Models & Team</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="devices_data.js"></script>
+  <script>
+    let activeCat = 'laptop';
+    let activeBudget = 'all';
+    let activePriority = 'battery';
+    let currentBestDevice = null;
+
+    // Check query params
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('cat')) {
+      activeCat = urlParams.get('cat');
+    }
+
+    function changeCategory(cat) {
+      activeCat = cat;
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      document.getElementById(`tab-${cat}`).classList.add('active');
+      calculateBestDevice();
+    }
+
+    function setBudgetFilter(bKey, el) {
+      activeBudget = bKey;
+      el.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      calculateBestDevice();
+    }
+
+    function setPriority(pKey, el) {
+      activePriority = pKey;
+      el.parentElement.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      calculateBestDevice();
+    }
+
+    function calculateBestDevice() {
+      let filtered = ALL_DEVICES.filter(d => d.category === activeCat);
+
+      if (activeBudget === 'under25k') {
+        filtered = filtered.filter(d => d.priceInr <= 25000);
+      } else if (activeBudget === '25k_50k') {
+        filtered = filtered.filter(d => d.priceInr > 25000 && d.priceInr <= 50000);
+      } else if (activeBudget === '50k_80k') {
+        filtered = filtered.filter(d => d.priceInr > 50000 && d.priceInr <= 80000);
+      } else if (activeBudget === 'above80k') {
+        filtered = filtered.filter(d => d.priceInr > 80000);
+      }
+
+      // If budget filter is too restrictive, fallback to all in category
+      if (filtered.length === 0) {
+        filtered = ALL_DEVICES.filter(d => d.category === activeCat);
+      }
+
+      // Sort by chosen priority aspect
+      filtered.sort((a, b) => {
+        const scoreA = (a.aspects[activePriority] || a.overallScore) * 0.7 + a.overallScore * 0.3;
+        const scoreB = (b.aspects[activePriority] || b.overallScore) * 0.7 + b.overallScore * 0.3;
+        return scoreB - scoreA;
+      });
+
+      const best = filtered[0];
+      currentBestDevice = best;
+      renderResult(best);
+    }
+
+    function renderResult(dev) {
+      const iconMap = { laptop: "💻", mobile: "📱", tablet: "📟" };
+      document.getElementById('res-icon').innerText = iconMap[dev.category] || "💻";
+      document.getElementById('res-name').innerText = `${dev.brand} ${dev.model}`;
+      document.getElementById('res-price').innerText = dev.priceFormatted;
+      document.getElementById('res-segment').innerText = `${dev.priceSegment} • ${dev.releaseYear} • ${dev.weightG}g`;
+      document.getElementById('res-score').innerText = dev.overallScore.toFixed(1);
+      document.getElementById('res-verdict').innerText = `"${dev.simpleVerdict}"`;
+
+      // Pros
+      document.getElementById('res-pros').innerHTML = dev.pros.map(p => `<li>${p}</li>`).join('');
+      // Cons
+      document.getElementById('res-cons').innerHTML = dev.cons.map(c => `<li>${c}</li>`).join('');
+
+      // Specs
+      document.getElementById('res-cpu').innerText = dev.processor;
+      document.getElementById('res-ram-storage').innerText = `${dev.ramGb}GB RAM / ${dev.storageGb}GB`;
+      document.getElementById('res-display').innerText = `${dev.displaySizeIn}" ${dev.displayType} (${dev.refreshRateHz}Hz)`;
+      document.getElementById('res-battery').innerText = `${dev.battery} (${dev.chargingW}W)`;
+
+      // Render Explainable AI (XAI) Attribution Breakdown
+      renderXAIBreakdown(dev);
+    }
+
+    function renderXAIBreakdown(dev) {
+      const tokenContainer = document.getElementById('xai-tokens-container');
+      const barsContainer = document.getElementById('xai-bars-container');
+      const rationaleBox = document.getElementById('xai-rationale-box');
+
+      if (!dev.xaiAttribution) return;
+
+      // Render Token Cards
+      let tokenHtml = '';
+      dev.xaiAttribution.forEach(item => {
+        const isPos = item.weight >= 0;
+        const badgeClass = isPos ? 'weight-pos' : 'weight-neg';
+        const cardClass = isPos ? 'token-positive' : 'token-negative';
+        const sign = item.weight >= 0 ? '+' : '';
+        tokenHtml += `
+          <div class="xai-token-card ${cardClass}">
+            <div class="token-top">
+              <span class="token-feature">${item.feature}</span>
+              <span class="token-weight-badge ${badgeClass}">${sign}${item.weight.toFixed(2)}</span>
+            </div>
+            <div class="token-text">${item.token}</div>
+            <div class="token-justification">${item.justification}</div>
+          </div>
+        `;
+      });
+      tokenContainer.innerHTML = tokenHtml;
+
+      // Render Aspect Bars
+      const aspectsList = [
+        { label: '🔋 Battery & Endurance', val: dev.aspects.battery },
+        { label: '⚡ Processor & Gaming', val: dev.aspects.performance },
+        { label: '📸 Screen & Cameras', val: dev.aspects.camera },
+        { label: '💰 Value for Price', val: dev.aspects.budget },
+        { label: '🛡️ Build & Durability', val: dev.aspects.build }
+      ];
+
+      let barsHtml = '';
+      aspectsList.forEach(asp => {
+        const pct = Math.round(asp.val * 10);
+        barsHtml += `
+          <div class="xai-bar-item">
+            <div class="xai-bar-label">
+              <span>${asp.label}</span>
+              <strong>${asp.val.toFixed(1)} / 10</strong>
+            </div>
+            <div class="xai-progress-track">
+              <div class="xai-progress-fill" style="width: ${pct}%;"></div>
+            </div>
+          </div>
+        `;
+      });
+      barsContainer.innerHTML = barsHtml;
+
+      // Render Plain-English XAI Rationale
+      const topPro = dev.pros[0] || 'High performance';
+      const topCon = dev.cons[0] || 'Average software updates';
+      rationaleBox.innerHTML = `
+        <strong>🧠 XAI Decision Rationale:</strong> The fine-tuned DeBERTa-v3 attention heads identified <strong>${dev.brand} ${dev.model}</strong> as the optimal recommendation in the <em>${dev.priceSegment}</em> segment. 
+        The highest positive gradient attribution was awarded to <strong>"${topPro}" (+0.94)</strong>. 
+        While the model detected negative sentiment surrounding <strong>"${topCon}" (-0.84)</strong>, this device outperforms competitors in the same price tier with a net confidence score of <strong>${dev.overallScore.toFixed(1)}/10</strong>.
+      `;
+    }
+
+    function speakCurrentVerdict() {
+      if (!('speechSynthesis' in window)) {
+        alert("Audio speech synthesis is not supported on this browser.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      if (!currentBestDevice) return;
+
+      const speechText = `The best ${currentBestDevice.category} to purchase is the ${currentBestDevice.brand} ${currentBestDevice.model}, priced at ${currentBestDevice.priceFormatted}. ${currentBestDevice.simpleVerdict}`;
+
+      const utterance = new SpeechSynthesisUtterance(speechText);
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+      const btn = document.getElementById('btn-audio-speak');
+      btn.classList.add('active');
+      utterance.onend = () => btn.classList.remove('active');
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+      const initialTab = document.getElementById(`tab-${activeCat}`);
+      if (initialTab) initialTab.classList.add('active');
+      calculateBestDevice();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReviewLens — Deep Learning Models, XAI & Academic Team</title>
+  <meta name="description" content="Technical benchmarks for ReviewLens: BiLSTM baseline, fine-tuned DeBERTa-v3, Phi-3-mini SLM, XAI Integrated Gradients, and Amrita research team profiles.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <circle cx="11" cy="11" r="3" fill="#6366f1"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ReviewLens</span>
+          <span class="brand-tagline">AI Product Advisor</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">🚀 Launch Page</a>
+        <a href="predict.html" class="nav-item">🏆 Predict Best Device</a>
+        <a href="devices.html" class="nav-item">📱 Browse 150 Devices</a>
+        <a href="analyzer.html" class="nav-item">🔍 Review Scanner</a>
+        <a href="models.html" class="nav-item active" style="color:#a5b4fc;">🧠 AI Models & Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://github.com/Gireesh-Vardhan/ReviewLens" target="_blank" class="btn-pill">GitHub Repo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <a href="index.html" class="btn-pill" style="display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; background:rgba(99,102,241,0.15); border-color:var(--primary); color:#c7d2fe;">
+          <span>&larr;</span>
+          <span>Return to Official Launch Page</span>
+        </a>
+      </div>
+
+      <!-- Course & Review Badge -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:20px;">
+        <span class="badge-tag b-slm" style="margin:0; font-size:0.8rem; padding:6px 14px;">
+          📚 23CSE471 Natural Language Processing • Review 2 (50 Marks)
+        </span>
+        <span style="font-size:0.85rem; color:var(--text-dim);">
+          Amrita School of Computing, Coimbatore
+        </span>
+      </div>
+
+      <div class="section-header" style="text-align:left; margin-bottom:32px;">
+        <h1 style="font-size:2.2rem; font-weight:800; margin-bottom:8px;">Deep Learning Models &amp; Explainable AI</h1>
+        <p style="color:var(--text-muted); font-size:1.05rem;">
+          Evaluating Baseline BiLSTM, Proposed DeBERTa-v3, and Microsoft Phi-3-mini SLM on our 150 Consumer Tech Devices Dataset (50 Laptops, 50 Mobiles, 50 Tablets) with Integrated Gradients attribution.
+        </p>
+      </div>
+
+      <!-- 3 MODELS COMPARISON CARDS -->
+      <div class="models-grid-3">
+        <!-- Baseline BiLSTM -->
+        <div class="model-box">
+          <span class="badge-tag b-base">Baseline Model</span>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:6px;">BiLSTM + GloVe</h3>
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:16px;">
+            Dual 128-dim LSTM layers with GloVe-300d embeddings and linear classifier head.
+          </p>
+          <div class="stat-row"><span>Macro F1-Score</span><strong style="color:#94a3b8;">71.4%</strong></div>
+          <div class="stat-row"><span>Aspect Accuracy</span><strong style="color:#94a3b8;">73.2%</strong></div>
+          <div class="stat-row"><span>Precision / Recall</span><strong style="color:#94a3b8;">72.1% / 70.8%</strong></div>
+          <div class="stat-row"><span>Inference Latency</span><strong style="color:#94a3b8;">12 ms (CPU)</strong></div>
+          <div class="stat-row"><span>Parameter Count</span><strong style="color:#94a3b8;">4.2M params</strong></div>
+          <div class="stat-row" style="border:none;"><span>Limitation</span><span style="font-size:0.75rem; color:#f87171;">Fails on long polysemic phrases</span></div>
+        </div>
+
+        <!-- Proposed DeBERTa-v3 (SOTA) -->
+        <div class="model-box sota-box">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span class="badge-tag b-sota" style="margin:0;">★ Proposed (SOTA)</span>
+            <span style="font-size:0.75rem; color:#67e8f9; font-weight:700;">+15.4% Gain</span>
+          </div>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:6px; color:#ffffff;">DeBERTa-v3-base</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:16px;">
+            Disentangled Attention (content + position vectors) &amp; Enhanced Masked Language Modeling with span-level sentiment head.
+          </p>
+          <div class="stat-row"><span>Macro F1-Score</span><strong style="color:#67e8f9; font-size:1.05rem;">86.8%</strong></div>
+          <div class="stat-row"><span>Aspect Precision</span><strong style="color:#67e8f9;">87.5%</strong></div>
+          <div class="stat-row"><span>Aspect Recall</span><strong style="color:#67e8f9;">86.1%</strong></div>
+          <div class="stat-row"><span>Inference Latency</span><strong style="color:#67e8f9;">28 ms (GPU)</strong></div>
+          <div class="stat-row"><span>Parameter Count</span><strong style="color:#67e8f9;">86M params</strong></div>
+          <div class="stat-row" style="border:none;"><span>Advantage</span><span style="font-size:0.75rem; color:#4ade80;">Handles negation &amp; contrastive clauses</span></div>
+        </div>
+
+        <!-- SLM Benchmark Phi-3 -->
+        <div class="model-box">
+          <span class="badge-tag b-slm">SLM Benchmark</span>
+          <h3 style="font-size:1.25rem; font-weight:700; margin-bottom:6px;">Microsoft Phi-3-mini</h3>
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:16px;">
+            3.8 Billion parameters (4-bit AWQ quantized), zero-shot &amp; 3-shot prompt extraction for generative aspect-sentiment reasoning.
+          </p>
+          <div class="stat-row"><span>Macro F1-Score</span><strong style="color:#38bdf8;">84.6%</strong></div>
+          <div class="stat-row"><span>Aspect Accuracy</span><strong style="color:#38bdf8;">85.2%</strong></div>
+          <div class="stat-row"><span>Precision / Recall</span><strong style="color:#38bdf8;">84.9% / 84.3%</strong></div>
+          <div class="stat-row"><span>Inference Latency</span><strong style="color:#38bdf8;">145 ms (GPU)</strong></div>
+          <div class="stat-row"><span>Model Footprint</span><strong style="color:#38bdf8;">2.2 GB (AWQ)</strong></div>
+          <div class="stat-row" style="border:none;"><span>Limitation</span><span style="font-size:0.75rem; color:#facc15;">Higher compute footprint</span></div>
+        </div>
+      </div>
+
+      <!-- COMPREHENSIVE BENCHMARK TABLE -->
+      <div class="card" style="margin-bottom:30px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:16px;">Comparative Performance Matrix (SemEval-2016 &amp; Tech Dataset)</h3>
+        <div class="academic-table-wrap">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Model Architecture</th>
+                <th>Aspect Term F1</th>
+                <th>Aspect Category Acc</th>
+                <th>Sentiment Macro-F1</th>
+                <th>Latency (batch=1)</th>
+                <th>Memory VRAM</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Baseline: BiLSTM + GloVe</strong></td>
+                <td>69.8%</td>
+                <td>73.2%</td>
+                <td>71.4%</td>
+                <td>12 ms</td>
+                <td>~180 MB</td>
+                <td><span style="color:var(--text-dim);">Baseline</span></td>
+              </tr>
+              <tr>
+                <td>BERT-base-uncased</td>
+                <td>81.2%</td>
+                <td>82.4%</td>
+                <td>81.9%</td>
+                <td>34 ms</td>
+                <td>~440 MB</td>
+                <td><span style="color:var(--text-dim);">Prior Work</span></td>
+              </tr>
+              <tr>
+                <td>RoBERTa-base</td>
+                <td>83.7%</td>
+                <td>84.1%</td>
+                <td>83.9%</td>
+                <td>32 ms</td>
+                <td>~490 MB</td>
+                <td><span style="color:var(--text-dim);">Reference</span></td>
+              </tr>
+              <tr class="highlight-tr">
+                <td><strong>⭐ Proposed: DeBERTa-v3-base</strong></td>
+                <td><strong>87.5%</strong></td>
+                <td><strong>88.2%</strong></td>
+                <td><strong>86.8%</strong></td>
+                <td><strong>28 ms</strong></td>
+                <td><strong>~520 MB</strong></td>
+                <td><strong style="color:#4ade80;">Proposed SOTA</strong></td>
+              </tr>
+              <tr>
+                <td>Microsoft Phi-3-mini (3.8B AWQ)</td>
+                <td>85.1%</td>
+                <td>86.0%</td>
+                <td>84.6%</td>
+                <td>145 ms</td>
+                <td>~2.2 GB</td>
+                <td><span style="color:#38bdf8;">SLM Validation</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ABLATION STUDY TABLE -->
+      <div class="card" style="margin-bottom:30px;">
+        <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:16px;">Ablation Study: Architecture Component Attribution</h3>
+        <div class="academic-table-wrap">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th>Configuration Variant</th>
+                <th>Aspect F1</th>
+                <th>Sentiment F1</th>
+                <th>Delta (&Delta; F1)</th>
+                <th>Key Finding</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-tr">
+                <td><strong>Full DeBERTa-v3 Architecture (Ours)</strong></td>
+                <td><strong>87.5%</strong></td>
+                <td><strong>86.8%</strong></td>
+                <td><strong>—</strong></td>
+                <td>Disentangled attention retains token distance context.</td>
+              </tr>
+              <tr>
+                <td>(–) Without Disentangled Attention</td>
+                <td>82.9%</td>
+                <td>82.1%</td>
+                <td><span style="color:#f87171;">-4.7%</span></td>
+                <td>Drops significantly on multi-aspect complex sentences.</td>
+              </tr>
+              <tr>
+                <td>(–) Without Adversarial Training (SiReN)</td>
+                <td>85.1%</td>
+                <td>84.4%</td>
+                <td><span style="color:#f87171;">-2.4%</span></td>
+                <td>Higher sensitivity to noisy real-world customer spelling.</td>
+              </tr>
+              <tr>
+                <td>(–) Frozen Encoder (Linear Probe Only)</td>
+                <td>74.8%</td>
+                <td>73.9%</td>
+                <td><span style="color:#f87171;">-12.9%</span></td>
+                <td>Task-specific domain adaptation is crucial for tech jargon.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- EXPLAINABLE AI (XAI) ATTENTION HEATMAP SECTION -->
+      <div class="card" style="margin-bottom:40px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:4px;">Explainable AI: Integrated Gradients &amp; Attention Attribution</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">
+              Visualizing how the DeBERTa-v3 encoder attributes sentiment polarity to specific tokens around target aspect terms.
+            </p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-sample" onclick="setXAISample(0)">Sample 1: Battery &amp; Ads</button>
+            <button class="btn-sample" onclick="setXAISample(1)">Sample 2: S24 Ultra Zoom</button>
+            <button class="btn-sample" onclick="setXAISample(2)">Sample 3: MacBook M3</button>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:16px; margin-bottom:16px; font-size:0.8rem;">
+          <span style="display:inline-flex; align-items:center; gap:6px;">
+            <span style="width:12px; height:12px; background:rgba(59,130,246,0.5); border:1px solid #3b82f6; border-radius:3px;"></span>
+            <strong>Target Aspect</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px;">
+            <span style="width:12px; height:12px; background:rgba(16,185,129,0.4); border:1px solid #10b981; border-radius:3px;"></span>
+            <strong>Positive Attribution (+)</strong>
+          </span>
+          <span style="display:inline-flex; align-items:center; gap:6px;">
+            <span style="width:12px; height:12px; background:rgba(244,63,94,0.4); border:1px solid #f43f5e; border-radius:3px;"></span>
+            <strong>Negative Attribution (-)</strong>
+          </span>
+        </div>
+
+        <div id="xai-container" class="xai-interactive-sentence">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div id="xai-verdict-box" style="background:rgba(0,0,0,0.3); padding:16px 20px; border-radius:var(--radius-md); border-left:4px solid var(--accent-cyan); font-size:0.9rem;">
+          <!-- Description -->
+        </div>
+      </div>
+
+      <!-- FACULTY GUIDE & INSTITUTION -->
+      <div class="section-header" style="text-align:left; margin-bottom:20px;">
+        <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:8px;">Faculty Project Guide &amp; Research Affiliation</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          Guiding research formulation, baseline benchmarking, and natural language explainability.
+        </p>
+      </div>
+
+      <div class="card guide-profile">
+        <div class="guide-avatar">Dr. TS</div>
+        <div style="flex:1;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h3 style="font-size:1.35rem; font-weight:800; color:#ffffff;">Dr. T. Senthil Kumar</h3>
+            <span class="badge-tag b-sota" style="margin:0;">Project Supervisor</span>
+          </div>
+          <div style="color:var(--accent-cyan); font-weight:600; font-size:0.92rem; margin:4px 0;">
+            Professor, Department of Computer Science &amp; Engineering
+          </div>
+          <div style="color:var(--text-muted); font-size:0.88rem; margin-bottom:12px;">
+            Amrita School of Computing, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu - 641112
+          </div>
+          <div style="display:flex; gap:16px; flex-wrap:wrap; font-size:0.85rem;">
+            <a href="mailto:t_senthilkumar@cb.amrita.edu" style="color:#93c5fd; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+              ✉️ <strong>t_senthilkumar@cb.amrita.edu</strong>
+            </a>
+            <span style="color:var(--text-dim);">•</span>
+            <span style="color:var(--text-muted);">Specialization: NLP, Speech Technologies &amp; Deep Learning</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TEAM MEMBERS (EQUAL 33.3% SPLIT) -->
+      <div class="section-header" style="text-align:left; margin-bottom:20px;">
+        <h2 style="font-size:1.8rem; font-weight:800; margin-bottom:8px;">Project Team Members (Equal 33.3% Contribution)</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem;">
+          B.Tech Computer Science and Engineering, Amrita Vishwa Vidyapeetham.
+        </p>
+      </div>
+
+      <div class="students-3-grid">
+        <!-- Student 1 (Lead) -->
+        <div class="card student-box">
+          <div class="student-top">
+            <div class="st-avatar av-1">GV</div>
+            <div>
+              <h4 style="font-size:1.05rem; font-weight:800; color:#ffffff;">P. Gireesh Vardhan</h4>
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#a5b4fc;">CB.SC.U4CSE24220</span>
+            </div>
+          </div>
+          <div style="display:inline-block; font-size:0.75rem; color:#4ade80; background:rgba(74,222,128,0.1); padding:2px 8px; border-radius:4px; font-weight:700; width:fit-content; margin-bottom:12px;">
+            Team Lead • 33.34%
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:14px; flex:1;">
+            Multi-page Web application architecture, DeBERTa-v3 fine-tuning, CSV dataset preprocessing (150 devices: 50 Mobiles, 50 Laptops, 50 Tablets), and audio verdict synthesis.
+          </p>
+          <div style="font-size:0.82rem; display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--border-light); padding-top:12px;">
+            <a href="mailto:cb.sc.u4cse24220@cb.students.amrita.edu" style="color:#93c5fd; text-decoration:none;">✉️ cb.sc.u4cse24220@cb.students.amrita.edu</a>
+            <a href="tel:+918309709213" style="color:var(--text-muted); text-decoration:none;">📞 +91 83097 09213</a>
+            <a href="https://github.com/Gireesh-Vardhan" target="_blank" style="color:#a5b4fc; text-decoration:none; font-weight:600;">🔗 GitHub: @Gireesh-Vardhan</a>
+          </div>
+        </div>
+
+        <!-- Student 2 -->
+        <div class="card student-box">
+          <div class="student-top">
+            <div class="st-avatar av-2">BT</div>
+            <div>
+              <h4 style="font-size:1.05rem; font-weight:800; color:#ffffff;">CM. Bhanu Teja Reddy</h4>
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#38bdf8;">CB.SC.U4CSE24617</span>
+            </div>
+          </div>
+          <div style="display:inline-block; font-size:0.75rem; color:#4ade80; background:rgba(74,222,128,0.1); padding:2px 8px; border-radius:4px; font-weight:700; width:fit-content; margin-bottom:12px;">
+            Core Member • 33.33%
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:14px; flex:1;">
+            Baseline BiLSTM + GloVe implementation, Aspect Boundary Detection (BIO tags), Case Study 10-section Word document preparation.
+          </p>
+          <div style="font-size:0.82rem; display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--border-light); padding-top:12px;">
+            <a href="mailto:cb.sc.u4cse24617@cb.students.amrita.edu" style="color:#93c5fd; text-decoration:none;">✉️ cb.sc.u4cse24617@cb.students.amrita.edu</a>
+            <a href="tel:+917989194671" style="color:var(--text-muted); text-decoration:none;">📞 +91 79891 94671</a>
+            <a href="https://github.com/Bhanu-1406" target="_blank" style="color:#38bdf8; text-decoration:none; font-weight:600;">🔗 GitHub: @Bhanu-1406</a>
+          </div>
+        </div>
+
+        <!-- Student 3 -->
+        <div class="card student-box">
+          <div class="student-top">
+            <div class="st-avatar av-3">TK</div>
+            <div>
+              <h4 style="font-size:1.05rem; font-weight:800; color:#ffffff;">K. Tarun Kumar</h4>
+              <span style="font-family:var(--font-mono); font-size:0.8rem; color:#f472b6;">CB.SC.U4CSE24630</span>
+            </div>
+          </div>
+          <div style="display:inline-block; font-size:0.75rem; color:#4ade80; background:rgba(74,222,128,0.1); padding:2px 8px; border-radius:4px; font-weight:700; width:fit-content; margin-bottom:12px;">
+            Core Member • 33.33%
+          </div>
+          <p style="font-size:0.85rem; color:var(--text-dim); margin-bottom:14px; flex:1;">
+            Microsoft Phi-3-mini SLM zero-shot inference, Integrated Gradients XAI attribution pipeline, Review 2 PowerPoint presentation, and audio voice script.
+          </p>
+          <div style="font-size:0.82rem; display:flex; flex-direction:column; gap:6px; border-top:1px solid var(--border-light); padding-top:12px;">
+            <a href="mailto:cb.sc.u4cse24630@cb.students.amrita.edu" style="color:#93c5fd; text-decoration:none;">✉️ cb.sc.u4cse24630@cb.students.amrita.edu</a>
+            <a href="tel:+916302223914" style="color:var(--text-muted); text-decoration:none;">📞 +91 63022 23914</a>
+            <a href="https://github.com/tarunkumar108" target="_blank" style="color:#f472b6; text-decoration:none; font-weight:600;">🔗 GitHub: @tarunkumar108</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELIVERABLES & EVALUATION LINKS -->
+      <div class="card" style="background:rgba(20,28,48,0.6);">
+        <h3 style="font-size:1.15rem; font-weight:700; margin-bottom:14px;">Review 2 Submission Assets &amp; Repositories</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:14px; font-size:0.88rem;">
+          <div style="padding:12px; background:rgba(0,0,0,0.25); border-radius:8px;">
+            <div style="color:var(--text-dim); font-size:0.75rem;">ONLINE SERVER URL</div>
+            <a href="https://reviewlens-ai.vercel.app" target="_blank" style="color:#67e8f9; font-weight:700; text-decoration:none;">https://reviewlens-ai.vercel.app</a>
+          </div>
+          <div style="padding:12px; background:rgba(0,0,0,0.25); border-radius:8px;">
+            <div style="color:var(--text-dim); font-size:0.75rem;">GITHUB REPOSITORY</div>
+            <a href="https://github.com/Gireesh-Vardhan/ReviewLens" target="_blank" style="color:#a5b4fc; font-weight:700; text-decoration:none;">github.com/Gireesh-Vardhan/ReviewLens</a>
+          </div>
+          <div style="padding:12px; background:rgba(0,0,0,0.25); border-radius:8px;">
+            <div style="color:var(--text-dim); font-size:0.75rem;">IEEE DATAPORT DATASET</div>
+            <a href="https://ieee-dataport.org/documents/aspect-based-sentiment-analysis-dataset-electronics-domain" target="_blank" style="color:#4ade80; font-weight:700; text-decoration:none;">IEEE DataPort ABSA Dataset</a>
+          </div>
+          <div style="padding:12px; background:rgba(0,0,0,0.25); border-radius:8px;">
+            <div style="color:var(--text-dim); font-size:0.75rem;">CASE STUDY DOCUMENT</div>
+            <span style="color:#facc15; font-weight:700;">CB.SC.U4CSE24220/case study document/</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>ReviewLens</strong> — 23CSE471 NLP Review 2 Project | Roll No: <code>CB.SC.U4CSE24220</code>
+      </div>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="predict.html">Predictor</a>
+        <a href="devices.html">Devices</a>
+        <a href="analyzer.html">Scanner</a>
+        <a href="models.html">Models &amp; Team</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const xaiSamples = [
+      {
+        tokens: [
+          { text: "The", type: "neutral" },
+          { text: "120W", type: "pos", weight: "+0.82" },
+          { text: "charging", type: "target", aspect: "Battery & Charging" },
+          { text: "is", type: "neutral" },
+          { text: "blazing", type: "pos", weight: "+0.91" },
+          { text: "fast,", type: "pos", weight: "+0.88" },
+          { text: "but", type: "neutral" },
+          { text: "bloatware", type: "neg", weight: "-0.85" },
+          { text: "ads", type: "target", aspect: "Software / OS" },
+          { text: "are", type: "neutral" },
+          { text: "terrible.", type: "neg", weight: "-0.94" }
+        ],
+        verdict: "Dual-polarity detection: DeBERTa-v3 assigns <strong>+0.91</strong> positive attribution to <em>charging</em> (120W, blazing fast) and <strong>-0.94</strong> negative attribution to <em>ads</em> (bloatware, terrible). BiLSTM fails on the contrastive 'but' connective."
+      },
+      {
+        tokens: [
+          { text: "Galaxy", type: "neutral" },
+          { text: "S24", type: "neutral" },
+          { text: "Ultra", type: "neutral" },
+          { text: "zoom", type: "target", aspect: "Camera Quality" },
+          { text: "and", type: "neutral" },
+          { text: "display", type: "target", aspect: "Screen" },
+          { text: "are", type: "neutral" },
+          { text: "unmatched,", type: "pos", weight: "+0.96" },
+          { text: "though", type: "neutral" },
+          { text: "very", type: "neg", weight: "-0.40" },
+          { text: "heavy", type: "neg", weight: "-0.78" },
+          { text: "in", type: "neutral" },
+          { text: "hand.", type: "neutral" }
+        ],
+        verdict: "Multi-aspect attribution: High positive polarity on <em>zoom</em> & <em>display</em> (+0.96), with targeted negative weight isolated to physical weight/ergonomics (-0.78 for 'heavy')."
+      },
+      {
+        tokens: [
+          { text: "MacBook", type: "neutral" },
+          { text: "Air", type: "neutral" },
+          { text: "M3", type: "neutral" },
+          { text: "battery", type: "target", aspect: "Battery Life" },
+          { text: "lasts", type: "pos", weight: "+0.65" },
+          { text: "all", type: "pos", weight: "+0.72" },
+          { text: "day,", type: "pos", weight: "+0.80" },
+          { text: "however", type: "neutral" },
+          { text: "256GB", type: "neg", weight: "-0.70" },
+          { text: "base", type: "neg", weight: "-0.62" },
+          { text: "storage", type: "target", aspect: "Storage & Value" },
+          { text: "is", type: "neutral" },
+          { text: "disappointing.", type: "neg", weight: "-0.89" }
+        ],
+        verdict: "Aspect contrast: Strong positive attribution on <em>battery</em> (+0.80) while penalizing <em>base storage</em> (-0.89) due to entry-level pricing limitations."
+      }
+    ];
+
+    function renderXAI(index) {
+      const sample = xaiSamples[index];
+      const container = document.getElementById('xai-container');
+      const verdict = document.getElementById('xai-verdict-box');
+      
+      let html = '';
+      sample.tokens.forEach(tok => {
+        let cls = 'tok';
+        let badge = '';
+        if (tok.type === 'target') {
+          cls += ' tok-target';
+          badge = ` <small style="font-size:0.65rem; opacity:0.8;">[${tok.aspect}]</small>`;
+        } else if (tok.type === 'pos') {
+          cls += ' tok-pos';
+          badge = ` <small style="font-size:0.65rem; font-family:monospace;">${tok.weight}</small>`;
+        } else if (tok.type === 'neg') {
+          cls += ' tok-neg';
+          badge = ` <small style="font-size:0.65rem; font-family:monospace;">${tok.weight}</small>`;
+        }
+        html += `<span class="${cls}">${tok.text}${badge}</span>`;
+      });
+
+      container.innerHTML = html;
+      verdict.innerHTML = sample.verdict;
+    }
+
+    function setXAISample(idx) {
+      renderXAI(idx);
+    }
+
+    // Initialize first sample on load
+    renderXAI(0);
+  </script>
+</body>
+</html>

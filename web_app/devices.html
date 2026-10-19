@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ReviewLens — Browse All 150 Devices (50 Laptops, 50 Phones &amp; 50 Tablets)</title>
+  <meta name="description" content="Browse all 150 devices in the ReviewLens dataset. Filter by budget, brand, and category to inspect real buyer pros and cons.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <circle cx="11" cy="11" r="3" fill="#6366f1"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">ReviewLens</span>
+          <span class="brand-tagline">AI Product Advisor</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">🚀 Launch Page</a>
+        <a href="predict.html" class="nav-item">🏆 Predict Best Device</a>
+        <a href="devices.html" class="nav-item active">📱 Browse 150 Devices</a>
+        <a href="analyzer.html" class="nav-item">🔍 Review Scanner</a>
+        <a href="models.html" class="nav-item" style="color:#a5b4fc;">🧠 AI Models & Team</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="predict.html" class="btn-pill" style="background:var(--primary);color:white;border:none;">🏆 Find Best</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <a href="index.html" class="btn-pill" style="display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; background:rgba(99,102,241,0.15); border-color:var(--primary); color:#c7d2fe;">
+          <span>&larr;</span>
+          <span>Return to Official Launch Page</span>
+        </a>
+      </div>
+
+      <div class="page-header">
+        <div class="tag-badge">Consumer Tech Catalog</div>
+        <h1 class="page-title">Explore All 150 Tech Devices</h1>
+        <p class="page-desc">Every device in our verified dataset with real prices in Indian Rupees (₹), detailed specifications, customer pros, and warnings.</p>
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="catalog-toolbar">
+        <input type="text" id="search-box" class="search-input" placeholder="Search by model or brand (e.g. MacBook, Galaxy, OnePlus, ThinkPad, TUF, iPad, Vivo, iQOO)..." oninput="applyCatalogFilters()">
+
+        <select id="filter-category" class="select-filter" onchange="applyCatalogFilters()">
+          <option value="all">All Categories (150)</option>
+          <option value="laptop">💻 Laptops (50)</option>
+          <option value="mobile">📱 Mobile Phones (50)</option>
+          <option value="tablet">📟 iPads &amp; Tablets (50)</option>
+        </select>
+
+        <select id="filter-segment" class="select-filter" onchange="applyCatalogFilters()">
+          <option value="all">All Price Segments</option>
+          <option value="Entry">Entry (Under ₹15k)</option>
+          <option value="Budget">Budget (₹15k - ₹25k)</option>
+          <option value="Mid-range">Mid-range (₹25k - ₹50k)</option>
+          <option value="Mid-range gaming">Mid-range Gaming</option>
+          <option value="Premium">Premium</option>
+          <option value="Flagship">Flagship</option>
+        </select>
+      </div>
+
+      <!-- Devices Cards Grid -->
+      <div class="catalog-cards-grid" id="catalog-container">
+        <!-- Injected via JavaScript from ALL_DEVICES -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>ReviewLens</strong> &bull; 150 Devices Catalog (50 Laptops, 50 Mobiles, 50 Tablets) &bull; Verified Consumer Tech Dataset
+      </div>
+      <div class="footer-nav">
+        <a href="index.html">🚀 Launch Page</a>
+        <a href="predict.html">Predictor</a>
+        <a href="analyzer.html">Scanner</a>
+        <a href="models.html">AI Models & Team</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="devices_data.js"></script>
+  <script>
+    function renderCatalogCards(list) {
+      const container = document.getElementById('catalog-container');
+      if (list.length === 0) {
+        container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No devices match your search. Try clearing the filter.</div>`;
+        return;
+      }
+
+      const iconMap = { laptop: "💻", mobile: "📱", tablet: "📟" };
+
+      container.innerHTML = list.map(d => `
+        <div class="catalog-card">
+          <div class="cat-card-top">
+            <span class="dev-id-tag">${d.id} &bull; ${d.releaseYear}</span>
+            <span class="dev-category-icon">${iconMap[d.category] || "💻"}</span>
+          </div>
+          <h3 class="cat-card-name">${d.brand} ${d.model}</h3>
+          <div class="cat-card-brand">${d.categoryDisplay} &bull; ${d.priceSegment}</div>
+          <div class="cat-card-price">${d.priceFormatted}</div>
+          <div class="cat-card-bestfor">Best for: ${d.bestFor}</div>
+
+          <!-- XAI Attribution Badge -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.3); border-radius:6px; padding:6px 10px; margin:10px 0; font-size:0.75rem;">
+            <span>🧠 XAI Score: <strong style="color:#67e8f9;">${d.overallScore}/10</strong></span>
+            <span style="color:#a5b4fc; font-family:var(--font-mono); font-size:0.7rem;">DeBERTa-v3 SOTA</span>
+          </div>
+
+          <div class="cat-card-specs">
+            <div><span>Chip:</span> <strong>${d.processor.split('(')[0].trim()}</strong></div>
+            <div><span>RAM/Storage:</span> <strong>${d.ramGb}GB / ${d.storageGb}GB</strong></div>
+            <div><span>Screen:</span> <strong>${d.displaySizeIn}" ${d.refreshRateHz}Hz</strong></div>
+            <div><span>Battery:</span> <strong>${d.battery.split('(')[0].trim()}</strong></div>
+          </div>
+
+          <div class="cat-card-pros-cons">
+            <div class="c-pro"><strong>🟢 Pros:</strong> ${d.pros.slice(0, 2).join('; ')}</div>
+            <div class="c-con"><strong>🔴 Cons:</strong> ${d.cons.slice(0, 2).join('; ')}</div>
+          </div>
+
+          <a href="predict.html?cat=${d.category}" style="margin-top:16px;text-align:center;text-decoration:none;font-size:0.85rem;font-weight:700;color:#a5b4fc;">
+            See Best in ${d.categoryDisplay} &raquo;
+          </a>
+        </div>
+      `).join('');
+    }
+
+    function applyCatalogFilters() {
+      const q = document.getElementById('search-box').value.toLowerCase().trim();
+      const cat = document.getElementById('filter-category').value;
+      const seg = document.getElementById('filter-segment').value;
+
+      let filtered = ALL_DEVICES;
+
+      if (cat !== 'all') {
+        filtered = filtered.filter(d => d.category === cat);
+      }
+
+      if (seg !== 'all') {
+        filtered = filtered.filter(d => d.priceSegment.toLowerCase().includes(seg.toLowerCase()));
+      }
+
+      if (q) {
+        filtered = filtered.filter(d => 
+          d.model.toLowerCase().includes(q) || 
+          d.brand.toLowerCase().includes(q) || 
+          d.bestFor.toLowerCase().includes(q) ||
+          d.id.toLowerCase().includes(q)
+        );
+      }
+
+      renderCatalogCards(filtered);
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCatalogCards(ALL_DEVICES);
+    });
+  </script>
+</body>
+</html>
